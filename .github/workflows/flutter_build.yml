@@ -2,7 +2,7 @@ name: Flutter APK Build
 
 on:
   push:
-    branches: [ main ]  # change if your branch is different
+    branches: [ main ]
   workflow_dispatch:
 
 jobs:
@@ -14,11 +14,12 @@ jobs:
     - name: Checkout repository
       uses: actions/checkout@v3
 
-    # 2️⃣ Set up Flutter (v2)
+    # 2️⃣ Set up Flutter (works reliably on Ubuntu 24.04)
     - name: Set up Flutter
       uses: subosito/flutter-action@v2
       with:
-        flutter-version: '3.13.10'  # specify latest stable version instead of 'stable'
+        flutter-version: '3.13.10' # exact version
+        channel: ''               # leave channel empty to avoid stable resolution issues
 
     # 3️⃣ Install dependencies
     - name: Get Flutter dependencies
