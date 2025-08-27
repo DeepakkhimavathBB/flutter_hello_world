@@ -14,10 +14,10 @@ jobs:
     - name: Checkout repository
       uses: actions/checkout@v3
 
-    # 2️⃣ Install Flutter manually
+    # 2️⃣ Install Flutter
     - name: Install Flutter
       run: |
-        git clone https://github.com/flutter/flutter.git -b 3.13.10 --depth 1
+        git clone https://github.com/flutter/flutter.git -b stable --depth 1
         echo "$PWD/flutter/bin" >> $GITHUB_PATH
         flutter --version
 
