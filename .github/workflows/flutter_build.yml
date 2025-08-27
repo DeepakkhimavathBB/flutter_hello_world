@@ -2,7 +2,7 @@ name: Flutter APK Build
 
 on:
   push:
-    branches: [ main ]
+    branches: [ main ]  # change if your branch is different
   workflow_dispatch:
 
 jobs:
@@ -10,20 +10,25 @@ jobs:
     runs-on: ubuntu-latest
 
     steps:
-    - name: Checkout code
+    # 1️⃣ Checkout code
+    - name: Checkout repository
       uses: actions/checkout@v3
 
+    # 2️⃣ Set up Flutter (v2)
     - name: Set up Flutter
-      uses: subosito/flutter-action@v3
+      uses: subosito/flutter-action@v2
       with:
-        flutter-version: 'stable'  # or use a specific version like '3.13.10'
+        flutter-version: '3.13.10'  # specify latest stable version instead of 'stable'
 
+    # 3️⃣ Install dependencies
     - name: Get Flutter dependencies
       run: flutter pub get
 
+    # 4️⃣ Build release APK
     - name: Build APK
       run: flutter build apk --release
 
+    # 5️⃣ Upload APK artifact
     - name: Upload APK
       uses: actions/upload-artifact@v4
       with:
