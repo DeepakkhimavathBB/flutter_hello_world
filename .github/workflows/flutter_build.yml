@@ -1,9 +1,8 @@
 name: Flutter APK Build
 
-# Trigger the workflow on push to main branch or manual trigger
 on:
   push:
-    branches: [ main ]  # change this if your branch is different
+    branches: [ main ]
   workflow_dispatch:
 
 jobs:
@@ -11,25 +10,20 @@ jobs:
     runs-on: ubuntu-latest
 
     steps:
-    # 1️⃣ Checkout your repository
     - name: Checkout code
       uses: actions/checkout@v3
 
-    # 2️⃣ Install Flutter SDK
     - name: Set up Flutter
-      uses: subosito/flutter-action@v2
+      uses: subosito/flutter-action@v3
       with:
-        flutter-version: 'stable'
+        flutter-version: 'stable'  # or use a specific version like '3.13.10'
 
-    # 3️⃣ Install dependencies
     - name: Get Flutter dependencies
       run: flutter pub get
 
-    # 4️⃣ Build release APK
     - name: Build APK
       run: flutter build apk --release
 
-    # 5️⃣ Upload the APK as artifact (updated to v4)
     - name: Upload APK
       uses: actions/upload-artifact@v4
       with:
